@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - Parque Aventura{% endblock %}
+
+{% block content %}
+<div class="container d-flex flex-column align-items-center justify-content-center vh-90">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="mb-4" style="max-width: 150px;">
+    <h1 class="mb-4">Bienvenido a Paque Aventura</h1>
+    <p class="text-center">Por favor, elige una opción para continuar:</p>
+    <div class="d-flex gap-3 mt-3">
+        <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">Iniciar Sesión</a>
+        <a href="{{ url_for('register') }}" class="btn btn-success btn-lg">Registrarse</a>
+    </div>
+</div>
+{% endblock %}

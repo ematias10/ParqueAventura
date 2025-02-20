@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Registro de usuario{% endblock %}
+
+{% block content %}
+    <div class="container-sm" style="max-width: 600px; text-align: center;">
+        <h2>Registrarse</h2>
+        <form method="POST">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" placeholder="Nombre" name="nombre" value="{{ datos.get('nombre','') }}" required>
+                <label for="floatingInput">Nombre</label>
+                <p class="error">{{ errores.get('nombre', '') }}</p>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" placeholder="Apellido" name="apellido" value="{{ datos.get('apellido','') }}" required>
+                <label for="floatingInput">Apellido</label>
+                <p class="error">{{ errores.get('apellido', '') }}</p>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" value="{{ datos.get('email','') }}" required>
+                <label for="floatingInput">Email</label>
+                <p class="error">{{ errores.get('email', '') }}</p>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" required>
+                <label for="floatingPassword">Contraseña</label>
+                <p class="error">{{ errores.get('password', '') }}</p>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="confirm_password" required>
+                <label for="floatingPassword">Confirmar contraseña</label>
+                <p class="error">{{ errores.get('password', '') }}</p>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">Registrarse</button>
+        </form>        
+    </div>
+
+{% endblock %}

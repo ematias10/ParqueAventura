@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Parque Aventura{% endblock %}
+
+{% block content %}
+    
+    <h5>Bienvenido, {{ username }}</h5>
+
+    <h2 class="mt-4">Mis Visitas</h2>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Parque</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Fecha Visita</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for visita in mis_visitas %}
+          <tr>
+            <td>{{ visita.parque }}</td>
+            <td>{{ visita.rating }}</td>
+            <td>{{ visita.fecha_visita }}</td>
+            <td>
+              <a href="{{ url_for('ver_visita', id=visita.id) }}" class="btn btn-info btn-sm">Ver</a>
+              <a href="{{ url_for('editar_visita', id=visita.id) }}" class="btn btn-warning btn-sm">Editar</a>
+              <a href="{{ url_for('borrar_visita', id=visita.id) }}" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres eliminar esta visita?')">Borrar</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+
+    <h2 class="mt-4">Otras Visitas</h2>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Parque</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Fecha Visita</th>
+            <th scope="col">Visitante</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for visita in otras_visitas %}
+          <tr>
+            <td>{{ visita.parque }}</td>
+            <td>{{ visita.rating }}</td>
+            <td>{{ visita.fecha_visita }}</td>
+            <td>{{ visita.usuario.nombre }} {{visita.usuario.apellido}}</td>
+            <td>
+              <a href="{{ url_for('ver_visita', id=visita.id) }}" class="btn btn-info btn-sm">Ver</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

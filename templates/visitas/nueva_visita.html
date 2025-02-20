@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Nueva Visita{% endblock %}
+
+{% block content %}
+<div class="container-sm" style="max-width: 600px; text-align: center;">
+    <h2>Nueva Visita</h2>
+    <form method="POST">
+        
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="parque" placeholder="Nombre del Parque" name="parque" value="{{ datos.get('parque', '') }}" required>
+            <label for="parque">Nombre del Parque</label>
+            <p class="error text-danger">{{ errores.get('parque', '') }}</p>
+        </div>
+
+        
+        <div class="form-floating mb-3">
+            <select class="form-select" id="rating" name="rating" required>
+                <option value="" disabled selected>Selecciona una calificación</option>
+                {% for i in range(1, 6) %}
+                    <option value="{{ i }}" {% if datos.get('rating')|int == i %}selected{% endif %}>{{ i }}</option>
+                {% endfor %}
+            </select>
+            <label for="rating">Calificación (1 a 5)</label>
+            <p class="error text-danger">{{ errores.get('rating', '') }}</p>
+        </div>
+
+        
+        <div class="form-floating mb-3">
+            <input type="date" class="form-control" id="fecha_visita" name="fecha_visita" value="{{ datos.get('fecha_visita', '') }}" max="{{ fecha_maxima }}" required>
+            <label for="fecha_visita">Fecha de Visita</label>
+            <p class="error text-danger">{{ errores.get('fecha_visita', '') }}</p>
+        </div>
+
+        
+        <div class="form-floating mb-3">
+            <textarea class="form-control" id="detalles" placeholder="Detalles de la visita" name="detalles" style="height: 100px" required>{{ datos.get('detalles', '') }}</textarea>
+            <label for="detalles">Detalles de la Visita</label>
+            <p class="error text-danger">{{ errores.get('detalles', '') }}</p>
+        </div>
+
+        
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">Guardar Visita</button>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-cancel" style="width: 100%; margin-top: 2rem;">Cancelar</button>
+    </form>        
+</div>
+{% endblock %}

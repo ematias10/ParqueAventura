@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Editar Visita{% endblock %}
+{% block content %}
+<div class="container-sm" style="max-width: 600px; text-align: center;">
+    <h2>Editar Visita</h2>
+    <form method="POST">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingParque" name="parque" value="{{ visita.parque }}" required>
+            <label for="floatingParque">Nombre del Parque</label>
+            <p class="error">{{ errores.get('parque', '') }}</p>
+        </div>
+
+        <div class="form-floating mb-3">
+            <select class="form-select" id="floatingRating" name="rating" required>
+                <option value="1" {% if visita.rating == 1 %}selected{% endif %}>1</option>
+                <option value="2" {% if visita.rating == 2 %}selected{% endif %}>2</option>
+                <option value="3" {% if visita.rating == 3 %}selected{% endif %}>3</option>
+                <option value="4" {% if visita.rating == 4 %}selected{% endif %}>4</option>
+                <option value="5" {% if visita.rating == 5 %}selected{% endif %}>5</option>
+            </select>
+            <label for="floatingRating">Calificación</label>
+            <p class="error">{{ errores.get('rating', '') }}</p>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="date" class="form-control" id="floatingFecha" name="fecha_visita" 
+                   value="{{ visita.fecha_visita }}" max="{{ fecha_maxima }}" required>
+            <label for="floatingFecha">Fecha de Visita</label>
+            <p class="error">{{ errores.get('fecha_visita', '') }}</p>
+        </div>
+
+        <div class="form-floating mb-3">
+            <textarea class="form-control" id="floatingDetalles" name="detalles" required>{{ visita.detalles }}</textarea>
+            <label for="floatingDetalles">Detalles</label>
+            <p class="error">{{ errores.get('detalles', '') }}</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">Guardar Cambios</button>
+        <button href="{{ url_for('dashboard') }}" class="btn mt-4" style="width: 100%; background-color: red; color:white">Cancelar</button>
+    </form>        
+</div>
+{% endblock %}
